@@ -1,7 +1,4 @@
----
-title: "Next.js로 마크다운 블로그 만들기"
-date: "2023-07-10"
----
+# Next.js로 마크다운 블로그 만들기
 
 ## :: 기본 개념, Pre-rendering and Data Fetching
 
