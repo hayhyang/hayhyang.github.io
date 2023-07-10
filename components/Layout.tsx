@@ -1,5 +1,6 @@
 import styles from "@/styles/Home.module.css";
 import { ReactNode } from "react";
+import Link from "next/link";
 
 interface LayoutProps {
   children: ReactNode;
@@ -10,7 +11,9 @@ const Layout = ({ children }: LayoutProps) => {
     <>
       <header className={styles.header}>
         <div className={styles.inner}>
-          <h1>Blog</h1>
+          <h1>
+            <Link href="/">Blog</Link>
+          </h1>
         </div>
       </header>
       <div className={styles.inner}>{children}</div>
