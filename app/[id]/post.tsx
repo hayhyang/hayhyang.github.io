@@ -1,5 +1,3 @@
-import Layout from "@/components/Layout";
-import styles from "@/styles/Home.module.css";
 import { PostData } from "@/types";
 
 interface PostProps {
@@ -8,11 +6,11 @@ interface PostProps {
 
 const Post = ({ post }: PostProps) => {
   return (
-    <Layout>
-      <h2 className={styles.title}>{post.title}</h2>
-      <span className={styles.date}>{post.date}</span>
+    <section>
+      <h2>{post.title}</h2>
+      <span>{post.date}</span>
       <div dangerouslySetInnerHTML={{ __html: post.contentHtml }}></div>
-    </Layout>
+    </section>
   );
 };
 

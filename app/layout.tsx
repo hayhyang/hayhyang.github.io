@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import "@/styles/globals.css";
+import { poppins, pretendard } from "@/styles/font";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -12,8 +14,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko">
-      <body>{children}</body>
+    <html lang="ko" className={`${poppins.className} ${pretendard.className}`}>
+      <body>
+        <header>
+          <h1>
+            <Link href="/">Blog</Link>
+          </h1>
+        </header>
+        <div></div>
+        {children}
+      </body>
     </html>
   );
 }
