@@ -108,6 +108,12 @@ body {
 header {
   background-color: #263248;
   padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header span {
+  font-size: 14px;
 }
 ol,
 ul {
@@ -182,10 +188,12 @@ h2 {
 
 h3 {
   font-size: 1.25em;
+  font-weight: 700;
 }
 
 h4 {
   font-size: 1em;
+  font-weight: 700;
 }
 
 h5 {
@@ -204,14 +212,18 @@ p {
 
 blockquote {
   margin: 0;
-  padding: 0.2em 1em;
+  padding: 0.5em 1em;
   border-left: 0.25em solid #b8c3d0;
   background-color: #f0f4f7;
 }
 
+blockquote h4 {
+  color: #6d7d90;
+}
+
 blockquote p {
   margin: 0;
-  color: #4a5766;
+  color: #6d7d90;
 }
 
 ul,

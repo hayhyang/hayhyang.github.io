@@ -18,8 +18,9 @@ export default function RootLayout({
       <body>
         <header>
           <h1>
-            <Link href="/">Blog</Link>
+            <Link href="/">오늘도 개미는 🐜 뚠뚠</Link>
           </h1>
+          <span>서개미</span>
         </header>
         <div></div>
         {children}
