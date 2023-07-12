@@ -7,7 +7,7 @@ import { PostData, PostsData } from "@/types";
 
 const postsDirectory = path.join(process.cwd(), "__posts");
 
-export function getSortedPostsData(): PostsData[] {
+export function getPostsData(): PostsData[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, "");

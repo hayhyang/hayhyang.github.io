@@ -1,4 +1,4 @@
-import { getAllPostIds, getPostData } from "@/lib/posts";
+import { getAllPostIds, getPostData } from "@/lib/api";
 import Post from "./post";
 
 export async function generateStaticParams() {

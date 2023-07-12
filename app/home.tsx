@@ -12,7 +12,7 @@ interface HomeProps {
 
 const inter = Inter({ subsets: ["latin"] });
 
-const HomePage = ({ posts }: HomeProps) => {
+const Home = ({ posts }: HomeProps) => {
   return (
     <Layout>
       <main className={`${styles.main} ${inter.className}`}>
@@ -36,4 +36,4 @@ const HomePage = ({ posts }: HomeProps) => {
   );
 };
 
-export default HomePage;
+export default Home;

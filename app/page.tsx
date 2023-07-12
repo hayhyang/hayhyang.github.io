@@ -1,14 +1,14 @@
-import { getSortedPostsData } from "@/lib/posts";
-import HomePage from "./home";
+import { getPostsData } from "@/lib/api";
+import Home from "./home";
 
 const getPosts = () => {
-  const posts = getSortedPostsData();
+  const posts = getPostsData();
   return posts;
 };
 
 const Page = async () => {
   const posts = await getPosts();
-  return <HomePage posts={posts} />;
+  return <Home posts={posts} />;
 };
 
 export default Page;
