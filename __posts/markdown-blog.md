@@ -3,34 +3,34 @@ title: "[Next.js] 마크다운 블로그 만들기"
 date: "2023-07-10"
 ---
 
-## :: 기본 개념, Pre-rendering and Data Fetching
+### 기본 개념, Pre-rendering and Data Fetching
 
-### Pre-rendering
+#### Pre-rendering
 
 Next.js가 사전렌더링을 하는 방식은 크게 두 가지다.
 
-#### SSG
+##### SSG
 
 빌드타임에 HTML을 생성하는 방법이다. 빌드 후에도 데이터가 바뀌지 않는 페이지에 적합하다.
 
-#### SSR
+##### SSR
 
 각 요청마다 서버에서 HTML을 생성하는 방법이다. 동적으로 데이터가 바뀌는 경우에 적합하다.
 
 > production모드에서는 빌드타임에만 실행되지만 development모드에서는 요청시마다 실행된다.
 
-### Data Fetching
+#### Data Fetching
 
 페이지 콘텐츠가 외부 데이터에 의존하는 경우 정적생성을 위해 다음과 같은 메서드를 사용한다.
 모든 메서드는 페이지단에서만 사용할 수 있다. 페이지가 렌더링되기 전에 데이터가 주입되어야 하기 때문이다.
 
-#### getServerSideProps
+##### getServerSideProps
 
 SSR방식으로 외부 데이터를 서버에서 받아와 초기 데이터로 설정하고 페이지로 전달한다. 페이지 요청시마다 실행된다. getStaticProps보다 성능이 떨어지지만 동적으로 데이터를 가져와 업데이트가 가능하다.(Dynamic Rendering)
 이 메서드는 정말 필요할 때만 사용하는 것이 좋다. CDN에 캐싱되지 않기 때문에 느리다.
 데이터를 미리 가져올 필요가 없다면 클라이언트 측에서 데이터를 가져오는 것도 좋다.
 
-#### getStaticProps
+##### getStaticProps
 
 정적사이트를 생성(SSG)할 때 사용하며 빌드타임에 실행되어 리액트 컴포넌트가 받을 props를 리턴한다.
 
@@ -51,7 +51,7 @@ export const getStaticProps = async (context) => {
 
 > getServerSideProps, getStaticProps의 매개변수와 반환값은 동일한 형태를 갖는다.
 >
-> #### 매개변수 context
+> ##### 매개변수 context
 >
 > > params: 동적 경로 정보<br />
 > > req: HTTP request object<br />
@@ -60,13 +60,13 @@ export const getStaticProps = async (context) => {
 > > preview: preview mode 여부
 > > previewData: setPreviewData로 설정된 데이터<br />
 >
-> #### 반환값 return
+> ##### 반환값 return
 >
 > > props: 해당 컴포넌트(페이지)로 반환할 값<br />
 > > redirect: 값 내부와 외부 리소스 리디렉션을 허용한다.<br />
 > > notFound: Boolean, 404에러를 반환한다.<br />
 
-#### getStaticPaths
+##### getStaticPaths
 
 동적 경로를 사용하는 페이지에서 정적사이트를 생성할 때(SSG) 이 메서드에서 지정한 모든 경로를 정적으로 pre-rendering한다.
 
@@ -86,11 +86,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 > SSG 메서드는 빌드타임에만 실행되지만 development모드에서는 요청시마다 실행된다.
 
-## :: 마크다운 블로그 만들기
+### 마크다운 블로그 만들기
 
 블로그는 외부 데이터(\_\_posts의 .md)를 불러와야 하고 실시간 데이터 변동이 없는 정적 사이트 이므로 SSG방식이 적합하다.
 
-### 마크다운 파일 생성
+#### 마크다운 파일 생성
 
 `\_\_posts` 경로의 `.md`파일을 생성한다.<br/>
 `[파일명].md` -> 파일명이 페이지의 경로/데이터의 id가 된다.<br/>
@@ -108,7 +108,7 @@ date: "2020-01-01"
 Next.js blah blah
 ```
 
-### 마크다운 데이터 파싱
+#### 마크다운 데이터 파싱
 
 `/lib` 경로에 `posts.ts`를 생성하여 파일 시스템에서 데이터를 가져온다.<br />
 데이터를 파싱하는데 필요한 모듈은 다음과 같다.
@@ -204,7 +204,7 @@ export function getAllPostIds() {
 }
 ```
 
-### 데이터를 컴포넌트에 주입
+#### 데이터를 컴포넌트에 주입
 
 getStaticProps, getStaticPaths
 
@@ -251,7 +251,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 ```
 
-### 참고
+#### 참고
 
 [Pre-rendering and Data Fetching](https://nextjs.org/learn/basics/data-fetching)
 <br />

@@ -1,4 +1,4 @@
-import { getPostsData } from "@/lib/api";
+import { getPostsData } from "@/app/lib/api";
 import Home from "./home";
 
 const getPosts = () => {

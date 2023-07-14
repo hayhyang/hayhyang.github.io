@@ -6,8 +6,6 @@ export const metadata: Metadata = {
 };
 
 export default function PostLayout({
-  // Layouts must accept a children prop.
-  // This will be populated with nested layouts or pages
   children,
 }: {
   children: React.ReactNode;

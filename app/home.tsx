@@ -1,5 +1,3 @@
-"use client";
-
 import { PostsData } from "@/types";
 import Link from "next/link";
 

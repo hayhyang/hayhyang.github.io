@@ -4,8 +4,8 @@ import { poppins, pretendard } from "@/styles/font";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: "Welcome to Next.js",
+  title: "Blog",
+  description: "Build with Next.js v13",
 };
 
 export default function RootLayout({
