@@ -14,9 +14,9 @@ const getPost = async ({ slug }: { slug: string }) => {
   return { ...post, content };
 };
 
-const Page = ({ params }: any) => {
-  const post = getPost(params);
-  console.log("post", post);
+const Page = async ({ params }: any) => {
+  const post = await getPost(params);
+
   return <Post post={post} />;
 };
 

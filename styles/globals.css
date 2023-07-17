@@ -116,6 +116,15 @@ header span {
   font-size: 1rem;
 }
 
+header input {
+  all: unset;
+  background-color: #4a5766;
+  height: 2.5em;
+  border-radius: 2em;
+  padding: 0 1em;
+  color: #fff;
+}
+
 blockquote,
 q {
   quotes: none;
@@ -301,4 +310,26 @@ pre code {
 }
 .new {
   background-color: #0099ff;
+}
+
+.hljs-keyword {
+  color: #07a;
+}
+
+.hljs-title.function_ {
+  color: #dd4a68;
+}
+.xml,
+.hljs-attr,
+.hljs-title.class_ {
+  color: rgb(55, 53, 47);
+}
+
+.hljs-tag,
+.hljs-name {
+  color: #905;
+}
+
+.hljs-string {
+  color: #690;
 }

@@ -17,7 +17,7 @@ export const getPostsData = (fields: string[]) => {
   const slugs = getPostSlugs();
   const postsData = slugs
     .map((slug) => getPostData(slug.slug, fields))
-    .sort((post1, post2) => (post1.data > post2.data ? -1 : 1));
+    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
 
   return postsData;
 };

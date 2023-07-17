@@ -20,7 +20,7 @@ export default function RootLayout({
           <h1>
             <Link href="/">오늘도 개미는 🐜 뚠뚠</Link>
           </h1>
-          <span>서개미</span>
+          <input type="search" />
         </header>
         <div></div>
         {children}
