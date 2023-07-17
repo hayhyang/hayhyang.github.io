@@ -1,6 +1,9 @@
 ---
 title: "[Next.js] 페이지 라우터를 앱 라우터로 마이그레이션하기"
 date: "2023-07-13"
+excerpt: "page router를 app router로 마이그레이션하기"
+tags:
+  - Next.js
 ---
 
 ### STEP 1. `app` 디렉토리 생성
@@ -11,7 +14,7 @@ date: "2023-07-13"
 npm install next@latest
 ```
 
-2. 최상위 혹은 `src` 디렉토리 하위에 `app` 디렉토리를 생성한다. pages와 공존할 수 있으므로 마이그레이션이 완료될때까지 지우지 않아도 된다.
+2. 최상위 혹은 `src` 디렉토리 하위에 `app` 디렉토리를 생성한다. `pages`와 함께 사용할 수 있다.
 
 ### STEP 2. Root Layout 생성
 
@@ -46,7 +49,7 @@ export const metadata: Metadata = {
 
 ### STEP 3. `next/head` 마이그레이션
 
-페이지 디렉토리에서는 `next/head` 에서 title과 meta를 관리했지만 app router에서는 빌트인 기능으로 대체되었다. metaData에 정보를 담아주면 된다.
+page router에서는 `next/head` 에서 title과 meta를 관리했지만 app router에서는 빌트인 기능으로 대체되었다. metaData 객체에 정보를 담아주면 된다.
 
 ```typescript
 import Head from "next/head";
@@ -76,19 +79,11 @@ export default function Page() {
 
 ### STEP 4. 파일 구조
 
-기본적으로 내부의 모든 경로를 라우트로 인식하던 `pages`디렉토리와는 다르게 `app`디렉토리는 components, lib,
-
-궁금한 점
-
-1. components가 app 바깥에 위치할 경우 server component가 아니게 되는가? ssr이 안되나?
-
-app router로 마이그레이션 하는 방법은 다음 링크를 참조했다. [App Router Migration]
-
-[App Router Migration]: https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration
+기본적으로 내부의 모든 경로를 라우트로 인식하던 `pages`디렉토리와는 다르게 `app`디렉토리는 components, lib를 페이지가 아닌 구성요소로 인식한다. `_` prefix가 없어도 라우트로 인식하지 않는다.
 
 ### App Router
 
-app router는 next13버전에서 제공하는 라우팅 컨벤션이다. `app` 디렉토리 안에서 라우팅을 할 수 있고 `pages` 디렉토리와 함께 사용할 수 있어 마이그레이션을 점진적으로 할 수 있다.
+app router는 next13버전에서 제공하는 라우팅 컨벤션이다. `app` 디렉토리 안에서 라우팅을 할 수 있고 `pages` 디렉토리 라우팅과 함께 사용할 수 있다.
 
 app 디렉토리 안에 있는 컴포넌트들은 기본적으로 서버컴포넌트다.
 layout, 중첩 라우팅, 로딩상태, 에러핸들링 등을 지원한다.
@@ -129,3 +124,7 @@ page 라우터에서 app 라우터로 마이그레이션할 때 변경되는 지
 - `pages/_app.js`, `pages/_documents.js`는 `app/layout.js`로 대체되었다.
 - `pages/_error.js` 는 `error.js` 로 대체되었다.
 - `pages/404.js` 는 `not-found.js` 로 대체되었다.
+
+app router로 마이그레이션 하는 방법은 다음 링크를 참조했다. [App Router Migration]
+
+[App Router Migration]: https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration

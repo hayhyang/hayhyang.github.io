@@ -1,18 +1,18 @@
-import { PostsData } from "@/types";
 import Link from "next/link";
 
 interface HomeProps {
-  posts: PostsData[];
+  posts: any[];
 }
 
 const Home = ({ posts }: HomeProps) => {
   return (
     <section>
       <ul className="list">
-        {posts.map(({ id, date, title }) => (
-          <li key={id} className="item">
-            <Link href={id} rel="noopener noreferrer">
-              <h2>{title}</h2>
+        {posts.map(({ slug, date, title, excerpt }) => (
+          <li key={slug} className="item">
+            <Link as={`/${slug}`} href="/[slug]">
+              <h3>{title}</h3>
+              <p>{excerpt}</p>
               <span>{date}</span>
             </Link>
           </li>

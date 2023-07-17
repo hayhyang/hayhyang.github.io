@@ -1,15 +1,15 @@
-import { PostData } from "@/types";
-
 interface PostProps {
-  post: PostData;
+  post: any;
 }
 
 const Post = ({ post }: PostProps) => {
+  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@content", post);
   return (
     <section>
       <h2>{post.title}</h2>
       <span>{post.date}</span>
-      <div dangerouslySetInnerHTML={{ __html: post.contentHtml }}></div>
+      {post.content}
+      {/* <div dangerouslySetInnerHTML={{ __html: post.content }}></div> */}
     </section>
   );
 };

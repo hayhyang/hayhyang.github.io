@@ -1,68 +1,44 @@
 import fs from "fs";
-import path from "path";
+import path, { join } from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
-import { PostData, PostsData } from "@/types";
 
 const postsDirectory = path.join(process.cwd(), "__posts");
+const getFiles = () => fs.readdirSync(postsDirectory);
 
-export function getPostsData(): PostsData[] {
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map((fileName) => {
-    const id = fileName.replace(/\.md$/, "");
+export const getPostSlugs = () => {
+  const files = getFiles();
 
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
+  return files.map((file) => ({
+    slug: file.replace(/\.md$/, ""),
+  }));
+};
 
-    const {
-      data: { title, date },
-    } = matter(fileContents);
+export const getPostsData = (fields: string[]) => {
+  const slugs = getPostSlugs();
+  const postsData = slugs
+    .map((slug) => getPostData(slug.slug, fields))
+    .sort((post1, post2) => (post1.data > post2.data ? -1 : 1));
 
-    return {
-      id,
-      title,
-      date,
-    };
-  });
+  return postsData;
+};
 
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
+export const getPostData = (slug: string, fields: string[]) => {
+  const fullPath = join(postsDirectory, `${slug}.md`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(fileContents);
+  const postData: { [key: string]: string } = {};
+
+  fields.forEach((field) => {
+    if (field === "content") {
+      postData[field] = content;
+    }
+    if (field === "slug") {
+      postData[field] = slug;
+    }
+    if (typeof data[field] !== "undefined") {
+      postData[field] = data[field];
     }
   });
-}
 
-export function getAllPostIds() {
-  const fileNames = fs.readdirSync(postsDirectory);
-
-  return fileNames.map((fileName) => {
-    return {
-      params: {
-        id: fileName.replace(/\.md$/, ""),
-      },
-    };
-  });
-}
-
-export async function getPostData(id: PostData["id"]): Promise<PostData> {
-  const fullPath = path.join(postsDirectory, `${id}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-
-  const {
-    data: { title, date },
-    content,
-  } = matter(fileContents);
-
-  const processedContent = await remark().use(html).process(content);
-  const contentHtml = processedContent.toString();
-
-  return {
-    id,
-    contentHtml,
-    title,
-    date,
-  };
-}
+  return postData;
+};

@@ -2,7 +2,8 @@ import { getPostsData } from "@/app/lib/api";
 import Home from "./home";
 
 const getPosts = () => {
-  const posts = getPostsData();
+  const posts = getPostsData(["slug", "title", "date", "tags", "excerpt"]);
+
   return posts;
 };
 

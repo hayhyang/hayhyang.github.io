@@ -1,6 +1,9 @@
 ---
 title: "[Next.js] 마크다운 블로그 만들기"
 date: "2023-07-10"
+excerpt: "마크다운으로 작성한 포스트를 Next.js 정적페이지(SSG) 블로그로 만들기"
+tags:
+  - Next.js
 ---
 
 ### 기본 개념, Pre-rendering and Data Fetching
@@ -251,7 +254,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 ```
 
-#### 참고
+#### 참고자료
 
 [Pre-rendering and Data Fetching](https://nextjs.org/learn/basics/data-fetching)
 <br />
